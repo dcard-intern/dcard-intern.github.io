@@ -16,7 +16,7 @@ const Login = (props) => {
 
         if (authorizationCode) {
             const getAccessToken = async () => {
-                await fetch('http://140.113.160.136:5688/getAccessToken?code=' + authorizationCode, {
+                await fetch('https://prevexam.dece.nycu.edu.tw/:5688/getAccessToken?code=' + authorizationCode, {
                     method: "GET"
                 }).then(res => res.json())
                     .then((data) => {
