@@ -1,0 +1,206 @@
+.List {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.web_title {
+    margin-top: 50px;
+}
+
+.setting_row {
+    background-color: rgb(240, 240, 240);
+    border: 0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 1000px;
+    height: 100px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.new_issue_button {
+    position: relative;
+    height: 50px;
+    width: 140px;
+    border: 0;
+    border-radius: 7px;
+    background-color: rgb(0, 162, 0);
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.new_issue_button:hover {
+    background-color: rgb(1, 150, 1);
+}
+
+.search_row {
+    width: 998px;
+    height: 50px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    border: solid gray;
+    border-radius: 10px;
+    border-width: 2px;
+    overflow: hidden;
+    background: linear-gradient(to right, white 81.6%, rgb(224, 48, 48) 81.6%, rgb(224, 48, 48) 90.8%,rgb(0, 162, 0) 90.8%);
+}
+
+.search_input {
+    height: 48px;
+    border: 0;
+    outline: none;
+    width: 750px;
+    font-size: 20px;
+    background: transparent;
+}
+
+.clear_button {
+    height: 50px;
+    width: 92px;
+    border: 0;
+    color: white;
+    font-size: 20px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.clear_button:hover {
+    background-color: rgb(205, 45, 45);
+}
+
+.search_button {
+    height: 50px;
+    width: 92px;
+    border: 0;
+    color: white;
+    font-size: 20px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.search_button:hover {
+    background-color: rgb(1, 150, 1);
+}
+
+.cover_new_issue_table {
+    position: absolute;
+    margin-top: 300px;
+    margin-left: 185px;
+    z-index: 1000;
+}
+
+.select_order {
+    height: 50px;
+    padding: 10px;
+    font-size: 20px;
+    position: relative;
+    border-radius: 7px;
+    border: 0;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+.select_order:hover {
+    background-color: rgb(116, 115, 115);
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+    height: 50px;
+    position: relative;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+}
+
+.order_title {
+    font-size: 25px;
+    margin-left: 5px;
+    margin-right: 20px;
+}
+
+.filter_title {
+    font-size: 25px;
+    margin-left: 5px;
+    margin-right: 20px;
+}
+
+.select_filter {
+    height: 50px;
+    padding: 10px;
+    font-size: 20px;
+    position: relative;
+    border-radius: 7px;
+    border: 0;
+    margin-right: 80px;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+.select_filter:hover {
+    background-color: rgb(116, 115, 115);
+}
+
+.open_checkbox {
+    transform: scale(2);
+    position: relative;
+    margin-right: 10px;
+    margin-left: 30px;
+}
+
+.open_text {
+    font-size: 20px;
+    position: relative;
+    margin-right: 20px;
+}
+
+.in_progress_checkbox {
+    transform: scale(2);
+    position: relative;
+    margin-right: 10px;
+}
+
+.in_progress_text {
+    font-size: 20px;
+    position: relative;
+    margin-right: 20px;
+}
+
+.done_checkbox {
+    transform: scale(2);
+    position: relative;
+    margin-right: 10px;
+}
+
+.done_text {
+    font-size: 20px;
+    position: relative;
+    margin-right: 20px;
+}
+
+.apply_filter_button {
+    position: relative;
+    height: 40px;
+    width: 100px;
+    border: 0;
+    border-radius: 7px;
+    background-color: rgb(0, 162, 0);
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.apply_filter_button:hover {
+    background-color: rgb(1, 150, 1);
+}
