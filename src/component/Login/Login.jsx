@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import './Login.css';
 
 const Login = (props) => {
-    const CLIENT_ID = "de1f1fb315e2d2c32266";
+    const CLIENT_ID = "9c73cb3e1e3fa8f9e1f2";
 
     const loginWithGithub = () => {
         window.location.assign("https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID + '&scope=repo');

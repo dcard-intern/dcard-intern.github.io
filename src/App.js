@@ -4,8 +4,6 @@ import './App.css';
 import Login from './component/Login/Login';
 import Home from './component/Home/Home';
 
-// my token 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
-
 function App() {
     const [login, setLogin] = useState(false);
     const [authToken, setAuthToken] = useState("");
