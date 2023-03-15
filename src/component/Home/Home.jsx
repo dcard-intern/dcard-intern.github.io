@@ -17,8 +17,8 @@ const Home = (props) => {
     const [finished, setFinished] = useState(false);
     const [rerender, setRerender] = useState(false);
 
-    const owner = "cjchang925";
-    const repo = "C_Programming_Example";
+    const owner = "dcard-intern";
+    const repo = "dcard-intern.github.io";
     const accessToken = props.authToken;
     const perPage = 10;
 
