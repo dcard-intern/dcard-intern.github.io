@@ -8,6 +8,20 @@
     margin-top: 50px;
 }
 
+.repo_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.repo_title {
+    margin-right: 10px;
+}
+
+.setting_icon:hover {
+    cursor: pointer;
+}
+
 .setting_row {
     background-color: rgb(240, 240, 240);
     border: 0;

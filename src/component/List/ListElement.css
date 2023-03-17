@@ -1,7 +1,7 @@
 .list_element {
     background-color: rgb(220, 255, 240);
     width: 1000px;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     border-radius: 15px;
 }
 
@@ -141,6 +141,7 @@
 .issue_body {
     margin-left: 50px;
     margin-right: 100px;
+    padding-bottom: 30px;
     line-height: 25px;
     font-size: 18px;
     width: 900px;

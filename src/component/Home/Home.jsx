@@ -4,6 +4,7 @@ import IssueTable from '../IssueTable/IssueTable';
 import { BiFilterAlt } from 'react-icons/bi'
 import { BiSort } from 'react-icons/bi'
 import { GoSearch } from 'react-icons/go'
+import { MdOutlineWifiProtectedSetup } from 'react-icons/md'
 import './Home.css'
 
 const Home = (props) => {
@@ -17,13 +18,12 @@ const Home = (props) => {
     const [finished, setFinished] = useState(false);
     const [rerender, setRerender] = useState(false);
 
-    const owner = "dcard-intern";
-    const repo = "dcard-intern.github.io";
+    const owner = props.owner;
+    const repo = props.repo;
     const accessToken = props.authToken;
     const perPage = 10;
 
     useEffect(() => {
-        console.log('Call useEffect');
         if (props.login && !finished && !loading) getIssues();
     }, [props.login, rerender])
 
@@ -38,7 +38,6 @@ const Home = (props) => {
         const scrollTop = document.documentElement.scrollTop;
         const clientHeight = document.documentElement.clientHeight;
         if (scrollTop + clientHeight >= scrollHeight - 10 && !finished && !loading) {
-            console.log('true!');
             setRerender(!rerender);
         }
     };
@@ -57,15 +56,12 @@ const Home = (props) => {
                 url += '+label:' + (labelFilter.includes(' ') ? encodeURIComponent('\"' + labelFilter + '\"') : labelFilter);
             }
         }
-        console.log(url);
         try {
             const response = await fetch(url);
             let data = await response.json();
-            console.log(data);
             if (searchText.length !== 0) data = data.items;
             if (data.length < 10) {
                 setFinished(true);
-                console.log('set finished');
             }
             const filtered = data.map((item) => {
                 return {
@@ -76,7 +72,6 @@ const Home = (props) => {
                     state: item.state
                 }
             })
-            console.log(`Now page ${page}`, filtered);
             setIssues(prevIssues => [...prevIssues, ...filtered]); // add new issues to the existing set
             setPage(prevPage => prevPage + 1); // increment the page number to fetch the next set of issues
             setLoading(false);
@@ -105,18 +100,12 @@ const Home = (props) => {
         })
             .then(response => {
                 if (response.ok) {
-                    if (newIssue.state === 'open') {
-                        alert("Issue updated successfully.");
-                    } else {
-                        alert(`Issue #${number} has been closed.`);
-                    }
                     return response.json();
                 } else {
                     console.error("Failed to update issue.");
                 }
             })
             .then((res) => {
-                console.log(res);
                 setIssues([...issues.slice(0, index), {
                     title: res.title,
                     body: res.body,
@@ -136,12 +125,11 @@ const Home = (props) => {
         // API endpoint to create an issue
         const url = `https://api.github.com/repos/${owner}/${repo}/issues`;
 
-        console.log(newIssue);
         // Define the request options
         const requestOptions = {
             method: 'POST',
             headers: {
-                'Authorization': `token ${accessToken}`,
+                'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(newIssue)
@@ -151,7 +139,6 @@ const Home = (props) => {
         await fetch(url, requestOptions)
             .then(response => response.json())
             .then((res) => {
-                console.log(res);
                 if (direction === 'desc') {
                     setIssues([{
                         title: res.title,
@@ -225,10 +212,17 @@ const Home = (props) => {
         }
     }
 
+    const handleChangeRepo = () => {
+        props.setRepoName("");
+    }
+
     return (
         <div className='List'>
             <h1 className='web_title'>Dcard Project Manager</h1>
-            <h2>Developed by <a href='https://github.com/cjchang925'>Chi-chun Chang 張棋鈞</a></h2>
+            <div className='repo_row'>
+                <h2 className='repo_title'>You are working on <a href={`https://github.com/${owner}/${repo}`}>{owner}/{repo}</a></h2>
+                <MdOutlineWifiProtectedSetup style={{cursor: 'pointer'}} size={30} onClick={handleChangeRepo}/>
+            </div>
             <div className='setting_row'>
                 <BiSort size={23} style={{ marginLeft: '20px' }} />
                 <h3 className='order_title'>Sort by time:</h3>
@@ -242,7 +236,7 @@ const Home = (props) => {
                     <select type='text' className="select_filter" onChange={handleFilter}>
                         <option value='None'>None</option>
                         <option value='Open'>Open</option>
-                        <option value='in progress'>In Progress</option>
+                        <option value='In Progress'>In Progress</option>
                         <option value='Done'>Done</option>
                     </select>
                 </div>

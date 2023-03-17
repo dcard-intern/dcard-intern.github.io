@@ -35,6 +35,7 @@ const IssueTable = (props) => {
         };
 
         document.body.addEventListener('click', closeList);
+
         return () => {
             document.body.removeEventListener('click', closeList);
         }
