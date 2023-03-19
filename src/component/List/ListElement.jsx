@@ -3,6 +3,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineCheckCircle, AiOutlineMinusCircle } from 'react-icons/ai'
 import IssueTable from '../IssueTable/IssueTable'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
+import rehypeRaw from 'rehype-raw'
 import './ListElement.css'
 
 const ListElement = (props) => {
@@ -11,6 +12,11 @@ const ListElement = (props) => {
     const [displayEdit, setDisplayEdit] = useState(false);
     const labelRef = useRef();
     const optionRef = useRef();
+
+    let labelClassExtension = props.issue.label.slice(0, 1).toLowerCase();
+    if (props.issue.label.toLowerCase() !== 'open' && props.issue.label.toLowerCase() !== 'in progress' && props.issue.label.toLowerCase() !== 'done') {
+        labelClassExtension = 'a';
+    }
 
     const handleLabel = () => {
         setDisplayLabelList(!displayLabelList);
@@ -52,6 +58,14 @@ const ListElement = (props) => {
         props.handleNewIssue(newIssue, props.issue.number, props.index);
     }
 
+    const imageReg = /!\[.*?\]\(.*?\.(jpg|jpeg|gif|png|svg|JPG|JPEG|GIF|PNG|SVG)\)/;
+    const imageUrlReg = /https:\/\/.*\.(jpg|jpeg|gif|png|svg|JPG|JPEG|GIF|PNG|SVG)/;
+    let markdown = props.issue.body;
+
+    while (imageReg.test(markdown)) {
+        markdown = markdown.replace(imageReg, `<img src="${markdown.match(imageReg)[0].match(imageUrlReg)[0]}" width="700px"/>`);
+    }
+
     useEffect(() => {
         const closeList = (e) => {
             if (!labelRef.current.contains(e.target)) {
@@ -69,14 +83,14 @@ const ListElement = (props) => {
     }, [])
 
     return (
-        <div className={'list_element_' + props.issue.label.slice(0, 1).toLowerCase()}>
+        <div className={'list_element_' + labelClassExtension}>
             <div className='top_row'>
                 {props.issue.state === 'closed' ?
-                    <AiOutlineCheckCircle size={35} className='state_closed_icon'/>
+                    <AiOutlineCheckCircle size={35} className='state_closed_icon' />
                     :
                     <AiOutlineMinusCircle size={35} className='state_open_icon' />
                 }
-                <button className={'issue_label_' + props.issue.label.slice(0, 1).toLowerCase()} ref={labelRef} onClick={handleLabel}>
+                <button className={'issue_label_' + labelClassExtension} ref={labelRef} onClick={handleLabel}>
                     {props.issue.label.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}
                 </button>
                 {displayLabelList ?
@@ -105,16 +119,16 @@ const ListElement = (props) => {
                 }
                 {displayEdit ?
                     <div className='cover_issue_table'>
-                        <IssueTable closeIssueTable={closeIssueTable} handleNewIssue={handleNewIssue} type={'Edit'} 
-                        originalTitle={props.issue.title} originalBody={props.issue.body} originalLabel={props.issue.label}
-                        number={'#' + props.issue.number}/>
+                        <IssueTable closeIssueTable={closeIssueTable} handleNewIssue={handleNewIssue} type={'Edit'}
+                            originalTitle={props.issue.title} originalBody={props.issue.body} originalLabel={props.issue.label}
+                            number={'#' + props.issue.number} />
                     </div>
                     :
                     <></>
                 }
             </div>
             <h2 className='issue_title'>#{props.issue.number} {props.issue.title}</h2>
-            <ReactMarkdown className='issue_body' children={props.issue.body} />
+            <ReactMarkdown className='issue_body' children={markdown} rehypePlugins={[rehypeRaw]}/>
         </div>
     )
 }
