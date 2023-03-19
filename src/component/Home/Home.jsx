@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import ListElement from '../List/ListElement';
 import IssueTable from '../IssueTable/IssueTable';
 import { BiFilterAlt } from 'react-icons/bi'
 import { BiSort } from 'react-icons/bi'
 import { GoSearch } from 'react-icons/go'
-import { MdOutlineWifiProtectedSetup } from 'react-icons/md'
+import { IoMdArrowRoundBack } from 'react-icons/io'
 import './Home.css'
 
 const Home = (props) => {
@@ -17,6 +17,8 @@ const Home = (props) => {
     const [page, setPage] = useState(1);
     const [finished, setFinished] = useState(false);
     const [rerender, setRerender] = useState(false);
+    const [APIError, setAPIError] = useState(false);
+    const existingIssueNumber = useRef([]);
 
     const owner = props.owner;
     const repo = props.repo;
@@ -42,42 +44,77 @@ const Home = (props) => {
         }
     };
 
+    function delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
     const getIssues = async () => {
         setLoading(true);
-        let url = '';
-        if (searchText.length === 0) {
-            url = `https://api.github.com/repos/${owner}/${repo}/issues?page=${page}&per_page=${perPage}&direction=${direction}`;
-            if (labelFilter !== 'None') {
-                url += '&labels=' + encodeURIComponent(labelFilter);
-            }
-        } else {
-            url = `https://api.github.com/search/issues?page=${page}&sort=created&order=${direction}&per_page=${perPage}&q=${searchText}+repo:${owner}/${repo}`;
-            if (labelFilter !== 'None') {
-                url += '+label:' + (labelFilter.includes(' ') ? encodeURIComponent('\"' + labelFilter + '\"') : labelFilter);
-            }
-        }
-        try {
-            const response = await fetch(url);
-            let data = await response.json();
-            if (searchText.length !== 0) data = data.items;
-            if (data.length < 10) {
-                setFinished(true);
-            }
-            const filtered = data.map((item) => {
-                return {
-                    title: item.title,
-                    body: item.body,
-                    label: item.labels[0].name,
-                    number: item.number,
-                    state: item.state
+        let arr = [...issues];
+        let localFinished = finished;
+        const originalLength = arr.length;
+        let iterating = true;
+        let localPage = page;
+        while (iterating === true) {
+            let url = '';
+            if (searchText.length === 0) {
+                url = `https://api.github.com/repos/${owner}/${repo}/issues?page=${localPage}&per_page=${perPage}&direction=${direction}`;
+                if (labelFilter !== 'None') {
+                    url += '&labels=' + encodeURIComponent(labelFilter);
                 }
-            })
-            setIssues(prevIssues => [...prevIssues, ...filtered]); // add new issues to the existing set
-            setPage(prevPage => prevPage + 1); // increment the page number to fetch the next set of issues
-            setLoading(false);
-        } catch (error) {
-            console.error(error);
+            } else {
+                url = `https://api.github.com/search/issues?page=${localPage}&sort=created&order=${direction}&per_page=${perPage}&q=${searchText}+repo:${owner}/${repo}`;
+                if (labelFilter !== 'None') {
+                    url += '+label:' + (labelFilter.includes(' ') ? encodeURIComponent('\"' + labelFilter + '\"') : labelFilter);
+                }
+            }
+            try {
+                const response = await fetch(url);
+                let data = await response.json();
+                
+                if (searchText.length !== 0) {
+                    data = data.items;
+                }
+                if (data.length < 10) {
+                    localFinished = true;
+                }
+                const simplified = data.map((item) => {
+                    return {
+                        title: item.title,
+                        body: item.body,
+                        label: item.labels[0].name,
+                        number: item.number,
+                        state: item.state
+                    }
+                })
+
+                let filtered = [];
+
+                for (var i = 0; i < simplified.length; i++) {
+                    if (arr.length + filtered.length - originalLength === 10) break;
+                    if (existingIssueNumber.current.indexOf(simplified[i].number) === -1) {
+                        existingIssueNumber.current.push(simplified[i].number);
+                        filtered.push(simplified[i]);
+                    }
+                }
+
+                arr = [...arr, ...filtered];
+
+                localPage++;
+                
+                if (localFinished || arr.length - originalLength === 10) {
+                    break;
+                }
+            } catch (error) {
+                console.error(error);
+                setLoading(false);
+                setAPIError(true);
+            }
         }
+        setIssues(arr); // add new issues to the existing set
+        setFinished(localFinished);
+        setPage(localPage);
+        setLoading(false);
     }
 
     const editIssue = async (newIssue, number, index) => {
@@ -93,6 +130,10 @@ const Home = (props) => {
             state: newIssue.state
         };
 
+        if (newIssue.state === 'closed') {
+            setPage(page - 1);
+        }
+
         await fetch(apiUrl, {
             method: "PATCH",
             headers: headers,
@@ -105,17 +146,23 @@ const Home = (props) => {
                     console.error("Failed to update issue.");
                 }
             })
-            .then((res) => {
-                setIssues([...issues.slice(0, index), {
-                    title: res.title,
-                    body: res.body,
-                    label: res.labels[0].name,
-                    number: res.number,
-                    state: res.state
-                }, ...issues.slice(index + 1)]);
+            .then(async (res) => {
+                if (res.state === 'open') {
+                    setIssues([...issues.slice(0, index), {
+                        title: res.title,
+                        body: res.body,
+                        label: res.labels[0].name,
+                        number: res.number,
+                        state: res.state
+                    }, ...issues.slice(index + 1)]);
+                } else {
+                    setIssues([...issues.slice(0, index), ...issues.slice(index + 1)]);
+                }
             })
             .catch(error => {
-                console.error("An error occurred while updating issue:", error);
+                console.log(error);
+                setLoading(false);
+                setAPIError(true);
             });
     }
 
@@ -138,7 +185,7 @@ const Home = (props) => {
         // Send the request to create the issue
         await fetch(url, requestOptions)
             .then(response => response.json())
-            .then((res) => {
+            .then(async (res) => {
                 if (direction === 'desc') {
                     setIssues([{
                         title: res.title,
@@ -158,10 +205,16 @@ const Home = (props) => {
                 }
                 setLoading(false);
             })
+            .catch(error => {
+                console.log(error);
+                setLoading(false);
+                setAPIError(true);
+            });
     }
 
     const renewPage = () => {
         setIssues([]);
+        existingIssueNumber.current.length = 0;
         setPage(1);
         setFinished(false);
         setRerender(!rerender);
@@ -191,7 +244,6 @@ const Home = (props) => {
 
     const handleClear = () => {
         if (searchText.length === 0) {
-            alert('Nothing to clear!');
             return;
         }
         setSearchText("");
@@ -218,10 +270,12 @@ const Home = (props) => {
 
     return (
         <div className='List'>
+            <div className='back_icon' onClick={handleChangeRepo}>
+                <IoMdArrowRoundBack size={30} />
+            </div>
             <h1 className='web_title'>Dcard Project Manager</h1>
             <div className='repo_row'>
                 <h2 className='repo_title'>You are working on <a href={`https://github.com/${owner}/${repo}`}>{owner}/{repo}</a></h2>
-                <MdOutlineWifiProtectedSetup style={{cursor: 'pointer'}} size={30} onClick={handleChangeRepo}/>
             </div>
             <div className='setting_row'>
                 <BiSort size={23} style={{ marginLeft: '20px' }} />
@@ -250,7 +304,8 @@ const Home = (props) => {
             </div>
             {displayIssueTable ?
                 <div className='cover_new_issue_table'>
-                    <IssueTable closeIssueTable={closeIssueTable} handleNewIssue={handleNewIssue} type={'New'} />
+                    <IssueTable closeIssueTable={closeIssueTable} handleNewIssue={handleNewIssue} type={'New'}
+                        originalTitle={""} originalBody={""} originalLabel={"Open"} number={""} />
                 </div>
                 :
                 <></>
@@ -258,13 +313,13 @@ const Home = (props) => {
             {loading ?
                 <p style={{ fontSize: '30px' }}>Loading...</p>
                 :
-                <>
-                    {issues.length === 0 ?
+                APIError ?
+                    <p style={{ fontSize: '30px' }}>Error!</p>
+                    :
+                    issues.length === 0 ?
                         <p style={{ fontSize: '30px' }}>No issues!</p>
                         :
                         <></>
-                    }
-                </>
             }
             {issues.map((item, index) => {
                 return <ListElement issue={item} handleNewIssue={handleNewIssue} key={index} index={index} />

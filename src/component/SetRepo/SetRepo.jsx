@@ -21,29 +21,30 @@ const SetRepo = (props) => {
     }, []);
 
     const handleRepoName = async () => {
-        console.log(repoInput.current);
         if (repoInput.current === '') {
-            alert('Please enter repo name first.');
+            alert('Please enter owner and repo name.');
             return;
         }
 
-        const url = `https://api.github.com/repos/${props.owner}/${repoInput.current}`;
+        const url = `https://api.github.com/repos/${repoInput.current}`;
         const response = await fetch(url);
 
         if (response.ok) {
-            props.setRepoName(repoInput.current);
+            let str = repoInput.current;
+            props.setOwner(str.slice(0, str.indexOf('/')));
+            props.setRepoName(str.slice(str.indexOf('/') + 1));
         } else {
-            alert('Invalid repo name!');
+            alert('Invalid owner or repo name!');
         }
     }
 
     return (
         <div className="set_repo">
-            <h1 className='welcome_title'>{props.owner}, welcome to Dcard Project Manager!</h1>
+            <h1 className='welcome_title'>{props.user}, welcome to Dcard Project Manager!</h1>
             <div className='repo_input'>
                 <RiGitRepositoryFill size={40} />
-                <input type='text' className='repo_name_input' placeholder='Enter repo name here'
-                    onChange={(e) => repoInput.current = e.target.value} />
+                <input type='text' className='repo_name_input' placeholder='Enter OWNER/REPO here'
+                    onChange={(e) => repoInput.current = e.target.value} autoFocus/>
                 <button onClick={handleRepoName} className='repo_name_button'>Go</button>
             </div>
         </div>

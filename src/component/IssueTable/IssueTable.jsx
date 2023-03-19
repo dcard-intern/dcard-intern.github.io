@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import './IssueTable.css'
 
 const IssueTable = (props) => {
-    const [newTitle, setNewTitle] = useState("");
-    const [newBody, setNewBody] = useState("");
-    const [newLabel, setNewLabel] = useState("Open");
+    const [newTitle, setNewTitle] = useState(props.originalTitle);
+    const [newBody, setNewBody] = useState(props.originalBody);
+    const [newLabel, setNewLabel] = useState(props.originalLabel);
     const [displayLabelList, setDisplayLabelList] = useState(false);
     const labelRef = useRef();
 
@@ -43,7 +43,7 @@ const IssueTable = (props) => {
 
     return (
         <div className='new_issue_table'>
-            <h2 className='new_issue_title'>{props.type} Issue</h2>
+            <h2 className='new_issue_title'>{props.type} Issue {props.number}</h2>
             <button className={'new_issue_label_' + newLabel.slice(0, 1).toLowerCase()}
                 onClick={() => setDisplayLabelList(!displayLabelList)} ref={labelRef}>{newLabel}</button>
             {displayLabelList ?
@@ -56,13 +56,13 @@ const IssueTable = (props) => {
                 <></>
             }
             <form className='new_issue_form' onSubmit={handleTableSubmit}>
-                <textarea id='new_issue_input_title' value={newTitle} placeholder='Title' className='new_issue_input_title'
-                    onChange={(e) => setNewTitle(e.target.value)} rows={2} cols={30} required ></textarea>
-                <textarea id='new_issue_input_body' value={newBody} placeholder='Body' className='new_issue_input_body'
-                    onChange={(e) => setNewBody(e.target.value)} rows={5} cols={30} />
+                <textarea id='new_issue_input_title' placeholder='Title' className='new_issue_input_title'
+                    onChange={(e) => setNewTitle(e.target.value)} rows={2} cols={30} required defaultValue={props.originalTitle} />
+                <textarea id='new_issue_input_body' placeholder='Body' className='new_issue_input_body'
+                    onChange={(e) => setNewBody(e.target.value)} rows={5} cols={30} defaultValue={props.originalBody} />
                 <input type='submit' className='send_new_issue_table' />
             </form>
-            <button className='close_new_issue_table' onClick={props.closeIssueTable} >Close</button>
+            <button className='close_new_issue_table' onClick={props.closeIssueTable}>Cancel</button>
         </div>
     )
 };

@@ -24,7 +24,6 @@
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-bottom: solid rgb(225, 225, 225);
     border-width: 2px;
 }
 
@@ -42,12 +41,12 @@
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-bottom: solid rgb(225, 225, 225);
     border-width: 2px;
+    background-color: rgb(245, 215, 215);
 }
 
 .label_list_in_progress:hover {
-    background-color: rgb(225, 225, 225);
+    background-color: rgb(244, 203, 203);
     cursor: pointer;
 }
 
@@ -62,12 +61,12 @@
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-bottom: solid rgb(225, 225, 225);
     border-width: 2px;
+    background-color: rgb(192, 253, 198);
 }
 
 .label_list_done:hover {
-    background-color: rgb(225, 225, 225);
+    background-color: rgb(164, 253, 173);
     cursor: pointer;
 }
 
@@ -112,7 +111,7 @@
 }
 
 .new_issue_label_i {
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(245, 215, 215);
     height: 50px;
     width: 120px;
     border: 0;
@@ -131,11 +130,11 @@
 }
 
 .new_issue_label_i:hover {
-    background-color: rgb(210, 210, 210);
+    background-color: rgb(244, 203, 203);
 }
 
 .new_issue_label_d {
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(192, 253, 198);
     height: 50px;
     width: 120px;
     border: 0;
@@ -154,7 +153,7 @@
 }
 
 .new_issue_label_d:hover {
-    background-color: rgb(210, 210, 210);
+    background-color: rgb(164, 253, 173);
 }
 
 .new_issue_input_title {

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineCheckCircle, AiOutlineMinusCircle } from 'react-icons/ai'
 import IssueTable from '../IssueTable/IssueTable'
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import './ListElement.css'
 
 const ListElement = (props) => {
@@ -68,7 +69,7 @@ const ListElement = (props) => {
     }, [])
 
     return (
-        <div className="list_element">
+        <div className={'list_element_' + props.issue.label.slice(0, 1).toLowerCase()}>
             <div className='top_row'>
                 {props.issue.state === 'closed' ?
                     <AiOutlineCheckCircle size={35} className='state_closed_icon'/>
@@ -104,14 +105,16 @@ const ListElement = (props) => {
                 }
                 {displayEdit ?
                     <div className='cover_issue_table'>
-                        <IssueTable closeIssueTable={closeIssueTable} handleNewIssue={handleNewIssue} type={'Edit'} />
+                        <IssueTable closeIssueTable={closeIssueTable} handleNewIssue={handleNewIssue} type={'Edit'} 
+                        originalTitle={props.issue.title} originalBody={props.issue.body} originalLabel={props.issue.label}
+                        number={'#' + props.issue.number}/>
                     </div>
                     :
                     <></>
                 }
             </div>
             <h2 className='issue_title'>#{props.issue.number} {props.issue.title}</h2>
-            <p className='issue_body'>{props.issue.body}</p>
+            <ReactMarkdown className='issue_body' children={props.issue.body} />
         </div>
     )
 }

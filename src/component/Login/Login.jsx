@@ -28,7 +28,7 @@ const Login = (props) => {
                     .then((data) => {
                         props.setAuthToken(data.access_token);
                         props.setLogin(true);
-                        props.setOwner(data.username);
+                        props.setUser(data.username);
                         setLoading(false);
                     })
             }

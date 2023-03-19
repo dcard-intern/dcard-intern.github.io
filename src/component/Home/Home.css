@@ -4,6 +4,24 @@
     flex-direction: column;
 }
 
+.back_icon {
+    position: absolute;
+    margin-top: 50px;
+    margin-right: 950px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.back_icon:hover {
+    background-color: rgb(220, 220, 220);
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
 .web_title {
     margin-top: 50px;
 }

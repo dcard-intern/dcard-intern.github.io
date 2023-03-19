@@ -8,16 +8,17 @@ import SetRepo from './component/SetRepo/SetRepo';
 function App() {
     const [login, setLogin] = useState(false);
     const [authToken, setAuthToken] = useState("");
+    const [user, setUser] = useState("");
     const [owner, setOwner] = useState("");
     const [repoName, setRepoName] = useState("");
 
     if (!login) {
         return (
-            <Login setAuthToken={setAuthToken} setLogin={setLogin} setOwner={setOwner} />
+            <Login setAuthToken={setAuthToken} setLogin={setLogin} setUser={setUser} />
         );
     } else if (repoName.length === 0) {
         return (
-            <SetRepo setRepoName={setRepoName} owner={owner} />
+            <SetRepo setRepoName={setRepoName} setOwner={setOwner} user={user}/>
         )
     } else {
         return (
