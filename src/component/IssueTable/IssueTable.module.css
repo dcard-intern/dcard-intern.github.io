@@ -33,15 +33,10 @@
 }
 
 .label_list_in_progress {
-    border: 0px;
-    width: 120px;
-    height: 50px;
+    composes: label_list_open;
     color: red;
-    font-size: 18px;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-width: 2px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     background-color: rgb(245, 215, 215);
 }
 
@@ -51,17 +46,12 @@
 }
 
 .label_list_done {
-    border: 0px;
-    width: 120px;
-    height: 50px;
+    composes: label_list_open;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     color: green;
-    font-size: 18px;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-width: 2px;
     background-color: rgb(192, 253, 198);
 }
 
@@ -111,21 +101,9 @@
 }
 
 .new_issue_label_i {
+    composes: new_issue_label_o;
     background-color: rgb(245, 215, 215);
-    height: 50px;
-    width: 120px;
-    border: 0;
-    border-radius: 7px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    line-height: 30px;
     font-size: 18px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    margin-top: 10px;
     color: red;
 }
 
@@ -135,21 +113,18 @@
 
 .new_issue_label_d {
     background-color: rgb(192, 253, 198);
-    height: 50px;
-    width: 120px;
-    border: 0;
-    border-radius: 7px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    line-height: 30px;
-    font-size: 20px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    margin-top: 10px;
+    composes: new_issue_label_o;
     color: green;
+}
+
+.new_issue_label_d:hover {
+    background-color: rgb(164, 253, 173);
+}
+
+.new_issue_label_a {
+    composes: new_issue_label_o;
+    width: fit-content;
+    padding: 20px 20px;
 }
 
 .new_issue_label_d:hover {

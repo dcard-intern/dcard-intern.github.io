@@ -106,13 +106,7 @@
 }
 
 .search_button {
-    height: 50px;
-    width: 92px;
-    border: 0;
-    color: white;
-    font-size: 20px;
-    background: transparent;
-    cursor: pointer;
+    composes: clear_button;
 }
 
 .search_button:hover {
@@ -161,9 +155,7 @@
 }
 
 .filter_title {
-    font-size: 25px;
-    margin-left: 5px;
-    margin-right: 20px;
+    composes: order_title;
 }
 
 .select_filter {
@@ -182,57 +174,4 @@
 
 .select_filter:hover {
     background-color: rgb(116, 115, 115);
-}
-
-.open_checkbox {
-    transform: scale(2);
-    position: relative;
-    margin-right: 10px;
-    margin-left: 30px;
-}
-
-.open_text {
-    font-size: 20px;
-    position: relative;
-    margin-right: 20px;
-}
-
-.in_progress_checkbox {
-    transform: scale(2);
-    position: relative;
-    margin-right: 10px;
-}
-
-.in_progress_text {
-    font-size: 20px;
-    position: relative;
-    margin-right: 20px;
-}
-
-.done_checkbox {
-    transform: scale(2);
-    position: relative;
-    margin-right: 10px;
-}
-
-.done_text {
-    font-size: 20px;
-    position: relative;
-    margin-right: 20px;
-}
-
-.apply_filter_button {
-    position: relative;
-    height: 40px;
-    width: 100px;
-    border: 0;
-    border-radius: 7px;
-    background-color: rgb(0, 162, 0);
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
-}
-
-.apply_filter_button:hover {
-    background-color: rgb(1, 150, 1);
 }

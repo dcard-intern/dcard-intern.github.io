@@ -4,7 +4,14 @@ import { AiOutlineCheckCircle, AiOutlineMinusCircle } from 'react-icons/ai'
 import IssueTable from '../IssueTable/IssueTable'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import rehypeRaw from 'rehype-raw'
-import './ListElement.css'
+import style from './ListElement.module.css'
+
+/*
+ * <ListElement /> renders an issue, which is sent from <Home /> component.
+ * In this component, users are able to change the issue label and edit or delete
+ * the issue. It is able to render the issue body with Markdown language and images,
+ * which are limited to have a width of 700px.
+ */
 
 const ListElement = (props) => {
     const [displayLabelList, setDisplayLabelList] = useState(false);
@@ -27,6 +34,10 @@ const ListElement = (props) => {
     }
 
     const handleLabelChange = (e) => {
+        if (e.target.value === props.issue.label) {
+            return;
+        }
+        
         handleNewIssue({
             title: props.issue.title,
             body: props.issue.body,
@@ -83,42 +94,42 @@ const ListElement = (props) => {
     }, [])
 
     return (
-        <div className={'list_element_' + labelClassExtension}>
-            <div className='top_row'>
+        <div className={style['list_element_' + labelClassExtension]}>
+            <div className={style['top_row']}>
                 {props.issue.state === 'closed' ?
-                    <AiOutlineCheckCircle size={35} className='state_closed_icon' />
+                    <AiOutlineCheckCircle size={35} className={style['state_closed_icon']} />
                     :
-                    <AiOutlineMinusCircle size={35} className='state_open_icon' />
+                    <AiOutlineMinusCircle size={35} className={style['state_open_icon']} />
                 }
-                <button className={'issue_label_' + labelClassExtension} ref={labelRef} onClick={handleLabel}>
+                <button className={style['issue_label_' + labelClassExtension]} ref={labelRef} onClick={handleLabel}>
                     {props.issue.label.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}
                 </button>
                 {displayLabelList ?
-                    <div className='edit_label_list' onClick={handleLabelChange}>
-                        <button className='edit_label_list_open' value='Open'>Open</button>
-                        <button className='edit_label_list_in_progress' value='In Progress'>In Progress</button>
-                        <button className='edit_label_list_done' value='Done'>Done</button>
+                    <div className={style['edit_label_list']} onClick={handleLabelChange}>
+                        <button className={style['edit_label_list_open']} value='Open'>Open</button>
+                        <button className={style['edit_label_list_in_progress']} value='In Progress'>In Progress</button>
+                        <button className={style['edit_label_list_done']} value='Done'>Done</button>
                     </div>
                     :
                     <></>
                 }
-                <div className='more_icon_div' ref={optionRef} onClick={handleOption}>
+                <div className={style['more_icon_div']} ref={optionRef} onClick={handleOption}>
                     <BsThreeDotsVertical size={20} />
                 </div>
                 {displayOptionList ?
-                    <div className='option_list' onClick={handleOptionChange}>
-                        <button className='option_list_edit' value='edit'>Edit</button>
+                    <div className={style['option_list']} onClick={handleOptionChange}>
+                        <button className={style['option_list_edit']} value='edit'>Edit</button>
                         {props.issue.state === 'closed' ?
-                            <button className='option_list_delete' value='delete' disabled>Delete</button>
+                            <button className={style['option_list_delete']} value='delete' disabled>Delete</button>
                             :
-                            <button className='option_list_delete' value='delete'>Delete</button>
+                            <button className={style['option_list_delete']} value='delete'>Delete</button>
                         }
                     </div>
                     :
                     <></>
                 }
                 {displayEdit ?
-                    <div className='cover_issue_table'>
+                    <div className={style['cover_issue_table']}>
                         <IssueTable closeIssueTable={closeIssueTable} handleNewIssue={handleNewIssue} type={'Edit'}
                             originalTitle={props.issue.title} originalBody={props.issue.body} originalLabel={props.issue.label}
                             number={'#' + props.issue.number} />
@@ -127,8 +138,8 @@ const ListElement = (props) => {
                     <></>
                 }
             </div>
-            <h2 className='issue_title'>#{props.issue.number} {props.issue.title}</h2>
-            <ReactMarkdown className='issue_body' children={markdown} rehypePlugins={[rehypeRaw]}/>
+            <h2 className={style['issue_title']}>#{props.issue.number} {props.issue.title}</h2>
+            <ReactMarkdown className={style['issue_body']} children={markdown} rehypePlugins={[rehypeRaw]}/>
         </div>
     )
 }

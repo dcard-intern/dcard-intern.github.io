@@ -1,11 +1,18 @@
 import { useEffect, useState, useRef } from 'react';
 import ListElement from '../List/ListElement';
 import IssueTable from '../IssueTable/IssueTable';
-import { BiFilterAlt } from 'react-icons/bi'
-import { BiSort } from 'react-icons/bi'
-import { GoSearch } from 'react-icons/go'
-import { IoMdArrowRoundBack } from 'react-icons/io'
-import './Home.css'
+import { BiFilterAlt } from 'react-icons/bi';
+import { BiSort } from 'react-icons/bi';
+import { GoSearch } from 'react-icons/go';
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import style from './Home.module.css';
+
+/*
+ * <Home /> component is the home page of the website.
+ * It sends every issue in the state "issues" to another component <ListElement />.
+ * Moreover, it supports filters, sorting direction, creating new issues, and turning
+ * back to select another GitHub repo.
+ */
 
 const Home = (props) => {
     const [displayIssueTable, setDisplayIssueTable] = useState(false);
@@ -30,7 +37,6 @@ const Home = (props) => {
     }, [props.login, rerender])
 
     useEffect(() => {
-        // Fetch more issues when the user scrolls to the bottom of the page
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     });
@@ -43,10 +49,6 @@ const Home = (props) => {
             setRerender(!rerender);
         }
     };
-
-    function delay(time) {
-        return new Promise(resolve => setTimeout(resolve, time));
-    }
 
     const getIssues = async () => {
         setLoading(true);
@@ -111,14 +113,14 @@ const Home = (props) => {
                 setAPIError(true);
             }
         }
-        setIssues(arr); // add new issues to the existing set
+        setIssues(arr);
         setFinished(localFinished);
         setPage(localPage);
         setLoading(false);
     }
 
     const editIssue = async (newIssue, number, index) => {
-        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/issues/${number}`;
+        const url = `https://api.github.com/repos/${owner}/${repo}/issues/${number}`;
         const headers = {
             "Accept": "application/vnd.github.v3+json",
             "Authorization": `Bearer ${accessToken}`
@@ -134,7 +136,7 @@ const Home = (props) => {
             setPage(page - 1);
         }
 
-        await fetch(apiUrl, {
+        await fetch(url, {
             method: "PATCH",
             headers: headers,
             body: JSON.stringify(data)
@@ -169,10 +171,8 @@ const Home = (props) => {
     const createIssue = async (newIssue) => {
         setLoading(true);
 
-        // API endpoint to create an issue
         const url = `https://api.github.com/repos/${owner}/${repo}/issues`;
 
-        // Define the request options
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -182,7 +182,6 @@ const Home = (props) => {
             body: JSON.stringify(newIssue)
         };
 
-        // Send the request to create the issue
         await fetch(url, requestOptions)
             .then(response => response.json())
             .then(async (res) => {
@@ -269,41 +268,41 @@ const Home = (props) => {
     }
 
     return (
-        <div className='List'>
-            <div className='back_icon' onClick={handleChangeRepo}>
+        <div className={style['List']}>
+            <div className={style['back_icon']} onClick={handleChangeRepo}>
                 <IoMdArrowRoundBack size={30} />
             </div>
-            <h1 className='web_title'>Dcard Project Manager</h1>
-            <div className='repo_row'>
-                <h2 className='repo_title'>You are working on <a href={`https://github.com/${owner}/${repo}`}>{owner}/{repo}</a></h2>
+            <h1 className={style['web_title']}>Dcard Project Manager</h1>
+            <div className={style['repo_row']}>
+                <h2 className={style['repo_title']}>You are working on <a href={`https://github.com/${owner}/${repo}`}>{owner}/{repo}</a></h2>
             </div>
-            <div className='setting_row'>
+            <div className={style['setting_row']}>
                 <BiSort size={23} style={{ marginLeft: '20px' }} />
-                <h3 className='order_title'>Sort by time:</h3>
-                <select type='text' className="select_order" onChange={handleOrderChange}>
+                <h3 className={style['order_title']}>Sort by time:</h3>
+                <select type='text' className={style["select_order"]} onChange={handleOrderChange}>
                     <option value='desc'>Descending</option>
                     <option value='asc'>Ascending</option>
                 </select>
-                <div className='filters'>
+                <div className={style['filters']}>
                     <BiFilterAlt size={23} style={{ marginLeft: '65px' }} />
-                    <h3 className='filter_title'>Filters:</h3>
-                    <select type='text' className="select_filter" onChange={handleFilter}>
+                    <h3 className={style['filter_title']}>Filters:</h3>
+                    <select type='text' className={style["select_filter"]} onChange={handleFilter}>
                         <option value='None'>None</option>
                         <option value='Open'>Open</option>
                         <option value='In Progress'>In Progress</option>
                         <option value='Done'>Done</option>
                     </select>
                 </div>
-                <button className='new_issue_button' onClick={() => setDisplayIssueTable(!displayIssueTable)}>New issue</button>
+                <button className={style['new_issue_button']} onClick={() => setDisplayIssueTable(!displayIssueTable)}>New issue</button>
             </div>
-            <div className='search_row'>
+            <div className={style['search_row']}>
                 <GoSearch size={23} style={{ marginLeft: '20px', marginRight: '20px' }} />
-                <input type='text' value={searchText} placeholder='Search here...' className='search_input' onChange={handleSearchText}></input>
-                <button className='clear_button' onClick={handleClear}>Clear</button>
-                <button className='search_button' onClick={handleSearch}>Apply</button>
+                <input type='text' value={searchText} placeholder='Search here...' className={style['search_input']} onChange={handleSearchText}></input>
+                <button className={style['clear_button']} onClick={handleClear}>Clear</button>
+                <button className={style['search_button']} onClick={handleSearch}>Apply</button>
             </div>
             {displayIssueTable ?
-                <div className='cover_new_issue_table'>
+                <div className={style['cover_new_issue_table']}>
                     <IssueTable closeIssueTable={closeIssueTable} handleNewIssue={handleNewIssue} type={'New'}
                         originalTitle={""} originalBody={""} originalLabel={"Open"} number={""} />
                 </div>

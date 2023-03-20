@@ -1,6 +1,13 @@
 import { useRef, useEffect } from 'react'
 import { RiGitRepositoryFill } from 'react-icons/ri'
-import './SetRepo.css'
+import style from './SetRepo.module.css'
+
+/*
+ * <SetRepo /> component allows users to enter the repo owner and name to
+ * work on. If users enter nothing and click "Go" or press "Enter," it will
+ * alert them to type something and then search. If the repo owner or name
+ * is invalid, it will also alert the user to type again.
+ */
 
 const SetRepo = (props) => {
     const repoInput = useRef("");
@@ -39,13 +46,13 @@ const SetRepo = (props) => {
     }
 
     return (
-        <div className="set_repo">
-            <h1 className='welcome_title'>{props.user}, welcome to Dcard Project Manager!</h1>
-            <div className='repo_input'>
+        <div className={style["set_repo"]}>
+            <h1 className={style['welcome_title']}>{props.user}, welcome to Dcard Project Manager!</h1>
+            <div className={style['repo_input']}>
                 <RiGitRepositoryFill size={40} />
-                <input type='text' className='repo_name_input' placeholder='Enter OWNER/REPO here'
+                <input type='text' className={style['repo_name_input']} placeholder='Enter OWNER/REPO here'
                     onChange={(e) => repoInput.current = e.target.value} autoFocus/>
-                <button onClick={handleRepoName} className='repo_name_button'>Go</button>
+                <button onClick={handleRepoName} className={style['repo_name_button']}>Go</button>
             </div>
         </div>
     );
