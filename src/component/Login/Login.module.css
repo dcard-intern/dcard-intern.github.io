@@ -12,7 +12,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 700px;
+    height: 70vh;
+    min-height: 500px;
     width: 500px;
     position: relative;
     left: 100px;
@@ -26,8 +27,8 @@
 }
 
 .login_button {
-    width: 400px;
-    height: 100px;
+    width: 300px;
+    height: 80px;
     border: none;
     outline: none;
     background-color: rgb(255, 196, 0);
@@ -35,7 +36,7 @@
     position: relative;
     z-index: 0;
     border-radius: 10px;
-    font-size: 30px;
+    font-size: 25px;
     font-family: sans-serif;
     display: flex;
     justify-content: center;
@@ -60,7 +61,7 @@
 }
 
 .login_button:active {
-    color: #000
+    color: #000;
 }
 
 .login_button:active:after {

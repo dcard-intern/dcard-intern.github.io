@@ -15,7 +15,7 @@ const Login = (props) => {
 
     const loginWithGithub = () => {
         setLoading(true);
-        window.location.assign("https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID + '&scope=repo');
+        window.location.assign("https://github.com/login/oauth/authorize?client_id=" + process.env.REACT_APP_CLIENT_ID + '&scope=repo');
     }
 
     useEffect(() => {

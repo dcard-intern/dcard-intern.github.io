@@ -293,7 +293,7 @@ const Home = (props) => {
                         <option value='Done'>Done</option>
                     </select>
                 </div>
-                <button className={style['new_issue_button']} onClick={() => setDisplayIssueTable(!displayIssueTable)}>New issue</button>
+                <button className={style['new_issue_button']} onClick={() => setDisplayIssueTable(!displayIssueTable)}>New task</button>
             </div>
             <div className={style['search_row']}>
                 <GoSearch size={23} style={{ marginLeft: '20px', marginRight: '20px' }} />
@@ -316,7 +316,7 @@ const Home = (props) => {
                     <p style={{ fontSize: '30px' }}>Error!</p>
                     :
                     issues.length === 0 ?
-                        <p style={{ fontSize: '30px' }}>No issues!</p>
+                        <p style={{ fontSize: '30px' }}>No tasks!</p>
                         :
                         <></>
             }

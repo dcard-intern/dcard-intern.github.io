@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import { AiOutlineCheckCircle, AiOutlineMinusCircle } from 'react-icons/ai'
+import { AiOutlineMinusCircle } from 'react-icons/ai'
 import IssueTable from '../IssueTable/IssueTable'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import rehypeRaw from 'rehype-raw'
@@ -96,11 +96,7 @@ const ListElement = (props) => {
     return (
         <div className={style['list_element_' + labelClassExtension]}>
             <div className={style['top_row']}>
-                {props.issue.state === 'closed' ?
-                    <AiOutlineCheckCircle size={35} className={style['state_closed_icon']} />
-                    :
-                    <AiOutlineMinusCircle size={35} className={style['state_open_icon']} />
-                }
+                <AiOutlineMinusCircle size={35} className={style['state_open_icon']} />
                 <button className={style['issue_label_' + labelClassExtension]} ref={labelRef} onClick={handleLabel}>
                     {props.issue.label.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}
                 </button>
