@@ -33,7 +33,7 @@ const Home = (props) => {
     const perPage = 10;
 
     useEffect(() => {
-        if (props.login && !finished && !loading) getIssues();
+        if (props.login && !finished && !loading && !APIError) getIssues();
     }, [props.login, rerender])
 
     useEffect(() => {
