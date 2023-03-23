@@ -61,16 +61,16 @@
 
 ### Task內容
 + 每一個task都有專屬的區塊，包含label、number、title和body，以及設定的icon。<br/>
-:star2: **Feature:** 如同前面提到的task body支援Markdown語法，也可以處理圖片。為了避免圖片過大破壞版面，這裡一律將圖片寬度設為700像素。<br/>
+:star2: **Feature:** 如同前面提到的task body支援Markdown語法，也可以處理圖片。為了避免圖片過大破壞版面，一律將圖片寬度設為700像素。<br/>
 :star2: **Feature:** Task會根據label改變配色，`In Progress`是紅色系，`Done`是綠色系，而`Open`和其他label都是灰色系，讓使用者一眼辨識task的狀態。
 ![](https://i.imgur.com/tiSAN8a.jpg)
 
 + 按一下label可以在選單中選擇其他label。<br/>
-:star2: **Feature:** 在畫面任意位置點一下，就可以關閉label選單。
+:star2: **Feature:** 在網頁任意位置點一下，就可以關閉label選單。
 ![](https://i.imgur.com/QWg4D57.jpg)
 
 + 按一下右側的設定按鈕，可以選擇編輯或刪除Task。<br/>
-:star2: **Feature:** 在畫面任意位置點一下，就可以關閉設定選單。
+:star2: **Feature:** 在網頁任意位置點一下，就可以關閉設定選單。
 ![](https://i.imgur.com/ef0WIMw.jpg)
 
 
@@ -122,3 +122,6 @@
 
 ### Deployment
 + 這份專案部署在GitHub Pages靜態網頁伺服器上，根據[gh-pages](https://github.com/dcard-intern/dcard-intern.github.io/tree/gh-pages)這個branch部署。
+
+### Cross-device (PC and Tablet) Application
++ 這份專案支援電腦與平板電腦橫向使用，讓使用者外出時只需攜帶輕便的平板就可以管理所有task。
