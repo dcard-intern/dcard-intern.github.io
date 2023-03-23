@@ -67,7 +67,7 @@ const Home = (props) => {
             } else {
                 url = `https://api.github.com/search/issues?page=${localPage}&sort=created&order=${direction}&per_page=${perPage}&q=${searchText}+repo:${owner}/${repo}+state:open`;
                 if (labelFilter !== 'None') {
-                    url += '+label:' + (labelFilter.includes(' ') ? encodeURIComponent('\"' + labelFilter + '\"') : labelFilter);
+                    url += '+label:' + (labelFilter.includes(' ') ? encodeURIComponent('"' + labelFilter + '"') : labelFilter);
                 }
             }
             try {

@@ -62,6 +62,8 @@
 
 .new_issue_table {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     background-color: white;
     border-radius: 10px;
@@ -70,7 +72,7 @@
 }
 
 .new_issue_title {
-    margin-left: 22px;
+    margin-right: 230px;
 }
 
 .new_issue_form {
@@ -91,7 +93,7 @@
     padding: 0px;
     line-height: 30px;
     font-size: 20px;
-    margin-left: 20px;
+    margin-right: 215px;
     margin-bottom: 20px;
     margin-top: 10px;
 }
@@ -151,9 +153,10 @@
 }
 
 .close_new_issue_table {
+    margin-top: 22px;
+    position: relative;
+    right: 105px;
     margin-bottom: 20px;
-    margin-left: 20px;
-    margin-top: -60px;
     height: 40px;
     width: 130px;
     font-size: 18px;
@@ -169,10 +172,9 @@
 }
 
 .send_new_issue_table {
-    margin-top: 30px;
-    margin-bottom: 20px;
-    position: relative;
-    left: 227px;
+    position: absolute;
+    right: 20px;
+    margin-top: 240px;
     height: 40px;
     width: 130px;
     font-size: 18px;
