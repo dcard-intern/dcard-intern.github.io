@@ -115,11 +115,7 @@ const ListElement = (props) => {
                 {displayOptionList ?
                     <div className={style['option_list']} onClick={handleOptionChange}>
                         <button className={style['option_list_edit']} value='edit'>Edit</button>
-                        {props.issue.state === 'closed' ?
-                            <button className={style['option_list_delete']} value='delete' disabled>Delete</button>
-                            :
-                            <button className={style['option_list_delete']} value='delete'>Delete</button>
-                        }
+                        <button className={style['option_list_delete']} value='delete'>Delete</button>
                     </div>
                     :
                     <></>

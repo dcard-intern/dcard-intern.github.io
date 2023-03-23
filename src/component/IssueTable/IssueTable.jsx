@@ -67,7 +67,7 @@ const IssueTable = (props) => {
                 <></>
             }
             <form className={style['new_issue_form']} onSubmit={handleTableSubmit}>
-                <textarea id='new_issue_input_title' placeholder='Title' className={style['new_issue_input_title']}
+                <textarea id='new_issue_input_title' placeholder='Title (required)' className={style['new_issue_input_title']}
                     onChange={(e) => setNewTitle(e.target.value)} rows={2} cols={30} required defaultValue={props.originalTitle} />
                 <textarea id='new_issue_input_body' placeholder='Body (at least 30 characters)' className={style['new_issue_input_body']}
                     onChange={(e) => setNewBody(e.target.value)} rows={5} cols={30} defaultValue={props.originalBody} />
