@@ -171,7 +171,8 @@
 .send_new_issue_table {
     margin-top: 30px;
     margin-bottom: 20px;
-    margin-left: 255px;
+    position: relative;
+    left: 227px;
     height: 40px;
     width: 130px;
     font-size: 18px;
