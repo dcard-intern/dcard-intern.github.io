@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    min-height: 400px;    
+    min-height: 400px;
 }
 
 .welcome_title {
@@ -48,4 +48,22 @@
 
 .repo_name_button:hover {
     background-color: rgb(1, 150, 1);
+}
+
+@media screen and (max-width: 1000px) {
+    .welcome_title {
+        margin-left: 70px;
+        margin-right: 70px;
+    }
+    .repo_name_input {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 25px;
+        border: 0;
+        border-bottom: solid gray;
+        width: 500px;
+        margin-left: 15px;
+        margin-right: 15px;
+        outline: none;
+    }
 }
