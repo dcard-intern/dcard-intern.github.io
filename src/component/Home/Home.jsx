@@ -149,7 +149,7 @@ const Home = (props) => {
                 }
             })
             .then(async (res) => {
-                if (res.state === 'open') {
+                if (res.state === 'open' && (labelFilter === 'None' || labelFilter === res.labels[0].name)) {
                     setIssues([...issues.slice(0, index), {
                         title: res.title,
                         body: res.body,
@@ -158,6 +158,8 @@ const Home = (props) => {
                         state: res.state
                     }, ...issues.slice(index + 1)]);
                 } else {
+                    // Testing remove issue when filters are applied and modified label.
+                    console.log('hi')
                     setIssues([...issues.slice(0, index), ...issues.slice(index + 1)]);
                 }
             })
