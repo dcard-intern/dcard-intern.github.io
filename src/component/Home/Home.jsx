@@ -73,7 +73,7 @@ const Home = (props) => {
             try {
                 const response = await fetch(url);
                 let data = await response.json();
-                
+
                 if (searchText.length !== 0) {
                     data = data.items;
                 }
@@ -81,6 +81,15 @@ const Home = (props) => {
                     localFinished = true;
                 }
                 const simplified = data.map((item) => {
+                    if (typeof item.labels[0] === 'undefined') {
+                        return {
+                            title: item.title,
+                            body: item.body,
+                            label: '(No Label)',
+                            number: item.number,
+                            state: item.state
+                        }
+                    }
                     return {
                         title: item.title,
                         body: item.body,
@@ -103,7 +112,7 @@ const Home = (props) => {
                 arr = [...arr, ...filtered];
 
                 localPage++;
-                
+
                 if (localFinished || arr.length - originalLength === 10) {
                     break;
                 }
@@ -111,6 +120,7 @@ const Home = (props) => {
                 console.error(error);
                 setLoading(false);
                 setAPIError(true);
+                break;
             }
         }
         setIssues(arr);
@@ -136,11 +146,13 @@ const Home = (props) => {
             setPage(page - 1);
         }
 
-        await fetch(url, {
+        const requestOptions = {
             method: "PATCH",
             headers: headers,
             body: JSON.stringify(data)
-        })
+        };
+
+        await fetch(url, requestOptions)
             .then(response => {
                 if (response.ok) {
                     return response.json();
@@ -148,7 +160,7 @@ const Home = (props) => {
                     console.error("Failed to update issue.");
                 }
             })
-            .then(async (res) => {
+            .then((res) => {
                 if (res.state === 'open' && (labelFilter === 'None' || labelFilter === res.labels[0].name)) {
                     setIssues([...issues.slice(0, index), {
                         title: res.title,
@@ -158,8 +170,6 @@ const Home = (props) => {
                         state: res.state
                     }, ...issues.slice(index + 1)]);
                 } else {
-                    // Testing remove issue when filters are applied and modified label.
-                    console.log('hi')
                     setIssues([...issues.slice(0, index), ...issues.slice(index + 1)]);
                 }
             })
@@ -172,9 +182,7 @@ const Home = (props) => {
 
     const createIssue = async (newIssue) => {
         setLoading(true);
-
         const url = `https://api.github.com/repos/${owner}/${repo}/issues`;
-
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -186,7 +194,7 @@ const Home = (props) => {
 
         await fetch(url, requestOptions)
             .then(response => response.json())
-            .then(async (res) => {
+            .then((res) => {
                 if (direction === 'desc') {
                     setIssues([{
                         title: res.title,
@@ -255,7 +263,7 @@ const Home = (props) => {
         setDisplayIssueTable(false);
     }
 
-    const handleNewIssue = async (newIssue, number, index) => {
+    const handleNewIssue = (newIssue, number, index) => {
         if (number === 0) {
             // New issue
             createIssue(newIssue);

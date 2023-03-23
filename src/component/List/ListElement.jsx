@@ -98,7 +98,7 @@ const ListElement = (props) => {
             <div className={style['top_row']}>
                 <AiOutlineMinusCircle size={35} className={style['state_open_icon']} />
                 <button className={style['issue_label_' + labelClassExtension]} ref={labelRef} onClick={handleLabel}>
-                    {props.issue.label.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}
+                    {props.issue.label.split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}
                 </button>
                 {displayLabelList ?
                     <div className={style['edit_label_list']} onClick={handleLabelChange}>

@@ -11,8 +11,6 @@ import style from './Login.module.css';
 const Login = (props) => {
     const [loading, setLoading] = useState(false);
 
-    const CLIENT_ID = "9c73cb3e1e3fa8f9e1f2";
-
     const loginWithGithub = () => {
         setLoading(true);
         window.location.assign("https://github.com/login/oauth/authorize?client_id=" + process.env.REACT_APP_CLIENT_ID + '&scope=repo');
@@ -45,7 +43,7 @@ const Login = (props) => {
             <div className={style["login_header"]}>
                 <h1 className={style['login_web_title']}>Dcard Project Manager</h1>
                 {loading ?
-                    <h2 style={{fontSize: '36px'}}>Loading...</h2>
+                    <h2 style={{fontSize: '36px', marginTop: '7px'}}>Loading...</h2>
                     :
                     <button onClick={loginWithGithub} className={style['login_button']}>
                         <RxGithubLogo style={{marginRight: '20px'}}/>
