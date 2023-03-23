@@ -124,4 +124,4 @@
 + 這份專案部署在GitHub Pages靜態網頁伺服器上，根據[gh-pages](https://github.com/dcard-intern/dcard-intern.github.io/tree/gh-pages)這個branch部署。
 
 ### Cross-device (PC and Tablet) Application
-+ 這份專案支援電腦與平板電腦橫向使用，讓使用者外出時只需攜帶輕便的平板就可以管理所有task。
++ 這份專案除了設計給電腦使用外，也特別為平板電腦量身打造，讓使用者外出時只需攜帶輕便的平板就可以管理所有task。
