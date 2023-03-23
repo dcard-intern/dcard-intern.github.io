@@ -71,9 +71,11 @@ const IssueTable = (props) => {
                     onChange={(e) => setNewTitle(e.target.value)} rows={2} cols={30} required defaultValue={props.originalTitle} />
                 <textarea id='new_issue_input_body' placeholder='Body (at least 30 characters)' className={style['new_issue_input_body']}
                     onChange={(e) => setNewBody(e.target.value)} rows={5} cols={30} defaultValue={props.originalBody} />
-                <button className={style['send_new_issue_table']} type='submit'>Submit</button>
+                <div className={style['new_issue_button_div']}>
+                    <button className={style['close_new_issue_table']} onClick={props.closeIssueTable}>Cancel</button>
+                    <button className={style['send_new_issue_table']} type='submit'>Submit</button>
+                </div>
             </form>
-            <button className={style['close_new_issue_table']} onClick={props.closeIssueTable}>Cancel</button>
         </div>
     )
 };

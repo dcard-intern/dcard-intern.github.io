@@ -5,7 +5,7 @@
     height: 150px;
     position: absolute;
     margin-left: 20px;
-    margin-top: 78px;
+    margin-top: 70px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -31,9 +31,8 @@
 .label_list_in_progress {
     composes: label_list_open;
     color: red;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
     background-color: rgb(245, 215, 215);
+    font-size: 16px;
 }
 
 .label_list_in_progress:hover {
@@ -42,7 +41,7 @@
 }
 
 .label_list_done {
-    composes: label_list_in_progress;
+    composes: label_list_open;
     color: green;
     background-color: rgb(192, 253, 198);
 }
@@ -60,6 +59,8 @@
     border-radius: 10px;
     border: 2px solid rgb(6, 2, 150);
     position: absolute;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .new_issue_title {
@@ -87,7 +88,7 @@
     font-size: 20px;
     margin-right: 243px;
     margin-bottom: 20px;
-    margin-top: 80px;
+    margin-top: 70px;
 }
 
 .new_issue_label_o:hover {
@@ -97,7 +98,7 @@
 .new_issue_label_i {
     composes: new_issue_label_o;
     background-color: rgb(245, 215, 215);
-    font-size: 18px;
+    font-size: 16px;
     color: red;
 }
 
@@ -126,8 +127,6 @@
 }
 
 .new_issue_input_title {
-    margin-left: 20px;
-    margin-right: 20px;
     padding: 10px;
     font-size: 18px;
     border: 2px solid gray;
@@ -136,19 +135,18 @@
 
 .new_issue_input_body {
     margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
     padding: 10px;
     font-size: 18px;
     border: 2px solid gray;
     border-radius: 7px;
 }
 
-.close_new_issue_table {
-    margin-top: 22px;
-    position: relative;
-    right: 118px;
+.new_issue_button_div {
+    margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.close_new_issue_table {
     height: 40px;
     width: 130px;
     font-size: 18px;
@@ -164,9 +162,6 @@
 }
 
 .send_new_issue_table {
-    position: absolute;
-    right: 20px;
-    margin-top: 240px;
     height: 40px;
     width: 130px;
     font-size: 18px;
@@ -175,6 +170,7 @@
     border: 0;
     border-radius: 7px;
     cursor: pointer;
+    float: right;
 }
 
 .send_new_issue_table:hover {
