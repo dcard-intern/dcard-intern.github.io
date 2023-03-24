@@ -64,7 +64,7 @@
 
 
 ### Task內容
-+ 每一個task都有專屬的區塊，包含label、number、title和body，以及設定的icon。<br/>
++ 每一個task都有專屬的區塊，包含label、number、title和body，以及設定的icon。<br/>如果某個task沒有label，就會在label按鈕上顯示`(No Label)`。<br/>
 :star2: **Feature:** 如同前面提到的task body支援Markdown語法，也可以處理圖片。為了避免圖片過大破壞版面，一律將圖片寬度設為700像素。<br/>
 :star2: **Feature:** Task會根據label改變配色，`In Progress`是紅色系，`Done`是綠色系，而`Open`和其他label都是灰色系，讓使用者一眼辨識task的狀態。
 ![](https://i.imgur.com/tiSAN8a.jpg)
