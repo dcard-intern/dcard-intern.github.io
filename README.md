@@ -4,7 +4,11 @@
 + [Website Deployment Link](https://dcard-intern.github.io/)
 
 ### 使用GitHub帳號登入
-![Screenshot from 2023-03-24 00-13-50](https://user-images.githubusercontent.com/103064446/227266715-2594f9fa-b870-4703-b5ab-421d687dfd6d.png)
++ 電腦版 & 平板橫向使用
+![](https://i.imgur.com/vPNGvPC.jpg)
+
++ 平板直向使用
+![](https://i.imgur.com/tEIh49d.png)
 
 ### 選擇GitHub專案
 + 登入完成後，請輸入想要操作的repo擁有者與名稱。
