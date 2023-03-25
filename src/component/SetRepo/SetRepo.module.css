@@ -60,6 +60,7 @@
 @media screen and (max-width: 1000px) {
     .repo_name_input {
         width: 500px;
+        background-color: white;
     }
 
     .welcome_title {
