@@ -41,6 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 }
 
 .login_button:before {

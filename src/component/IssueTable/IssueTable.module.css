@@ -21,6 +21,7 @@
     font-size: 18px;
     border-width: 2px;
     background-color: rgb(223, 223, 223);
+    color: black;
 }
 
 .label_list_open:hover {
@@ -31,7 +32,7 @@
 
 .label_list_in_progress {
     composes: label_list_open;
-    color: red;
+    color: red !important;
     background-color: rgb(245, 215, 215);
     font-size: 16px;
 }
@@ -43,7 +44,7 @@
 
 .label_list_done {
     composes: label_list_open;
-    color: green;
+    color: green !important;
     background-color: rgb(192, 253, 198);
 }
 
