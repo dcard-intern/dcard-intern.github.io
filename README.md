@@ -75,7 +75,7 @@
 
 + 按一下右側的設定按鈕，可以選擇編輯或刪除Task。<br/>
 :star2: **Feature:** 在網頁任意位置點一下，就可以關閉設定選單。
-![](https://i.imgur.com/ef0WIMw.jpg)
+![](https://i.imgur.com/FRwbhbl.jpg)
 
 
 + 按一下`Edit`後，就會看到編輯Task的彈出視窗，和新增Task很像。<br/>
