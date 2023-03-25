@@ -7,18 +7,17 @@
 + 電腦版 & 平板橫向使用
 ![](https://i.imgur.com/vPNGvPC.jpg)
 
-+ 平板直向使用
-![](https://i.imgur.com/tEIh49d.png)
++ 平板直向使用<br/><img src="https://i.imgur.com/tEIh49d.png" width="600px"/>
 
 ### 選擇GitHub專案
-+ 登入完成後，請輸入想要操作的repo擁有者與名稱。
++ 登入完成後，請輸入想要操作的repo擁有者與名稱。<br/>
+:star2: **Feature:** 一進到這個頁面，使用者不需要點一下輸入方塊也可以直接輸入！<br/>
+:star2: **Feature:** 使用者輸入完畢後，按下鍵盤的`Enter`也可以送出，不一定要按`Go`。<br/>
 + 以這個專案的repo為例，就是`dcard-intern/dcard-intern.github.io`
+![](https://user-images.githubusercontent.com/127881330/227725010-6da13109-d8f0-4ab2-8e64-6564ee2facee.png)
 
-![](https://i.imgur.com/ar994Mz.png)
 
 + 如果輸入的repo擁有者與名稱確實存在，就會導引到主頁，顯示該repo的issue(以下皆稱為task)。<br/>
-:star2: **Feature:** 一進到這個頁面，使用者不需要點一下輸入方塊也可以直接輸入！<br/>
-:star2: **Feature:** 使用者輸入完畢後，按下鍵盤的`Enter`也可以送出。<br/>
 :ok_hand: **Error Handling:** 如果使用者未輸入任何字元就送出，會提醒使用者須輸入字元再送出。如果使用者輸入的repo不存在，也會提醒使用者修改輸入內容。
 
 ### 主頁
