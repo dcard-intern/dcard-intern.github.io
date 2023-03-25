@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
+import { MdModeEdit } from 'react-icons/md'
+import { RiDeleteBin6Line } from 'react-icons/ri'
 import IssueTable from '../IssueTable/IssueTable'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import rehypeRaw from 'rehype-raw'
@@ -114,8 +116,8 @@ const ListElement = (props) => {
                 </div>
                 {displayOptionList ?
                     <div className={style['option_list']} onClick={handleOptionChange}>
-                        <button className={style['option_list_edit']} value='edit'>Edit</button>
-                        <button className={style['option_list_delete']} value='delete'>Delete</button>
+                        <button className={style['option_list_edit']} value='edit'><MdModeEdit size={20} className={style['option_list_icon']}/>Edit</button>
+                        <button className={style['option_list_delete']} value='delete'><RiDeleteBin6Line size={20} className={style['option_list_icon']}/>Delete</button>
                     </div>
                     :
                     <></>

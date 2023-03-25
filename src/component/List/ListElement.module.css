@@ -99,11 +99,19 @@
     border-width: 2px;
     font-size: 20px;
     background-color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
 }
 
 .option_list_edit:hover {
     background-color: rgb(225, 225, 225);
     cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+.option_list_icon {
+    margin-right: 5px;
 }
 
 .option_list_delete {
@@ -116,7 +124,7 @@
 }
 
 .option_list_delete:hover {
-    background-color: rgb(248, 175, 175);
+    background-color: rgb(245, 205, 205);
     cursor: pointer;
 }
 
