@@ -56,7 +56,7 @@ const SetRepo = (props) => {
             <div className={style['repo_input']}>
                 <RiGitRepositoryFill size={40} />
                 <input type='text' className={style['repo_name_input']} placeholder='Enter OWNER/REPO here'
-                    onChange={(e) => repoInput.current = e.target.value} autoFocus autofocus ref={inputElement}/>
+                    onChange={(e) => repoInput.current = e.target.value} autoFocus ref={inputElement}/>
                 <button onClick={handleRepoName} className={style['repo_name_button']}>Go</button>
             </div>
         </div>
