@@ -89,6 +89,7 @@
     font-size: 20px;
     margin-bottom: 20px;
     margin-top: 70px;
+    color: black;
 }
 
 .new_issue_label_o:hover {
@@ -99,7 +100,7 @@
     composes: new_issue_label_o;
     background-color: rgb(245, 215, 215);
     font-size: 16px;
-    color: red;
+    color: red !important;
 }
 
 .new_issue_label_i:hover {
@@ -109,7 +110,7 @@
 .new_issue_label_d {
     background-color: rgb(192, 253, 198);
     composes: new_issue_label_o;
-    color: green;
+    color: green !important;
 }
 
 .new_issue_label_d:hover {

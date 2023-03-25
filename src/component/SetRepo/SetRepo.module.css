@@ -65,4 +65,9 @@
     .welcome_title {
         font-size: 30px;
     }
+
+    .set_repo {
+        background-color: white;
+        background-image: none;
+    }
 }
