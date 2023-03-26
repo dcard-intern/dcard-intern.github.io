@@ -14,9 +14,7 @@
 :star2: **Feature:** 一進到這個頁面，使用者不需要點一下輸入方塊也可以直接輸入！<br/>
 :star2: **Feature:** 使用者輸入完畢後，按下鍵盤的`Enter`也可以送出，不一定要按`Go`。<br/>
 + 以這個專案的repo為例，就是`dcard-intern/dcard-intern.github.io`
-![](https://user-images.githubusercontent.com/127881330/227729123-739b7855-95cf-45d6-bd11-3bf32d5ce15c.png)
-
-
+![Screenshot from 2023-03-26 12-30-57](https://user-images.githubusercontent.com/127881330/227755415-2e5933a1-c6d7-4d6a-a84d-46e1aaca3078.png)
 
 + 如果輸入的repo擁有者與名稱確實存在，就會導引到主頁，顯示該repo的issue(以下皆稱為task)。<br/>
 :ok_hand: **Error Handling:** 如果使用者未輸入任何字元就送出，會提醒使用者須輸入字元再送出。如果使用者輸入的repo不存在，也會提醒使用者修改輸入內容。
