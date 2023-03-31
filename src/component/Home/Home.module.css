@@ -183,5 +183,6 @@
         width: 100vw !important;
         transform: scale(0.7);
         transform-origin: top center;
+        height: fit-content;
     }
 }
