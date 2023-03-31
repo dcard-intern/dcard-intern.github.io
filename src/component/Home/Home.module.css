@@ -117,7 +117,7 @@
 .cover_new_issue_table {
     position: absolute;
     margin-top: 300px;
-    margin-left: 185px;
+    margin-left: 175px;
     z-index: 1000;
 }
 
@@ -149,9 +149,13 @@
     border-radius: 10px;
 }
 
+.filter_icon {
+    margin-left: 65px;
+}
+
 .order_title {
     font-size: 25px;
-    margin-left: 5px;
+    margin-left: 0px;
     margin-right: 20px;
 }
 
@@ -177,12 +181,46 @@
     background-color: rgb(116, 115, 115);
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1000px) {
     .List {
-        min-width: auto !important;
+        min-width: 950px !important;
         width: 100vw !important;
-        transform: scale(0.7);
-        transform-origin: top center;
-        height: fit-content;
+    }
+
+    .back_icon {
+        margin-right: 750px;
+    }
+
+    .cover_new_issue_table {
+        margin-left: 20px;
+    }
+
+    .setting_row {
+        background-color: rgb(240, 240, 240);
+        border: 0;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 850px;
+        height: 100px;
+        margin-bottom: 40px;
+        margin-top: 20px;
+    }
+
+    .search_row {
+        width: 850px;
+    }
+
+    .order_title {
+        font-size: 20px;
+    }
+
+    .filter_icon {
+        margin-left: 16px;
+    }
+
+    .select_filter {
+        margin-right: 30px;
     }
 }

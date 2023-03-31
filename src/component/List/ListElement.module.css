@@ -29,7 +29,7 @@
     background-color: rgb(223, 223, 223);
     height: 50px;
     width: 120px;
-    border:0;
+    border: 0;
     border-radius: 7px;
     cursor: pointer;
     display: flex;
@@ -204,7 +204,7 @@
 
 .cover_issue_table {
     position: absolute;
-    margin-left: 535px;
+    margin-left: 520px;
 }
 
 .edit_label_list {
@@ -251,4 +251,22 @@
     top: 40px;
     left: 50px;
     color: green;
+}
+
+@media screen and (max-width: 1000px) {
+    .list_element_o {
+        width: 850px;
+    }
+
+    .more_icon_div {
+        margin-left: 790px;
+    }
+
+    .option_list {
+        margin-left: 620px;
+    }
+
+    .cover_issue_table {
+        margin-left: 360px;
+    }
 }

@@ -294,7 +294,7 @@ const Home = (props) => {
                     <option value='asc'>Ascending</option>
                 </select>
                 <div className={style['filters']}>
-                    <BiFilterAlt size={23} style={{ marginLeft: '65px' }} />
+                    <BiFilterAlt size={23} className={style['filter_icon']} />
                     <h3 className={style['filter_title']}>Filters:</h3>
                     <select type='text' className={style["select_filter"]} onChange={handleFilter}>
                         <option value='None'>None</option>
