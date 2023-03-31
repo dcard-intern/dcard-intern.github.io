@@ -176,3 +176,15 @@
 .select_filter:hover {
     background-color: rgb(116, 115, 115);
 }
+
+@media screen and (max-width: 1250px) {
+    .List {
+        min-width: auto !important;
+        width: 100vw !important;
+        transform: scale(0.7);
+    }
+
+    .web_title {
+        margin-top: -30px !important;
+    }
+}
