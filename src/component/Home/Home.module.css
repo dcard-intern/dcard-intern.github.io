@@ -182,9 +182,6 @@
         min-width: auto !important;
         width: 100vw !important;
         transform: scale(0.7);
-    }
-
-    .web_title {
-        margin-top: -30px !important;
+        transform-origin: top center;
     }
 }
