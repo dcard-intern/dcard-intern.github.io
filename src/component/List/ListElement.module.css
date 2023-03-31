@@ -254,19 +254,5 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .list_element_o {
-        width: 850px;
-    }
-
-    .more_icon_div {
-        margin-left: 790px;
-    }
-
-    .option_list {
-        margin-left: 620px;
-    }
-
-    .cover_issue_table {
-        margin-left: 360px;
-    }
+ 
 }

@@ -183,10 +183,13 @@
 
 @media screen and (max-width: 1000px) {
     .List {
-        min-width: 950px !important;
+        min-width: 800px !important;
         width: 100vw !important;
+        transform: scale(0.7);
+        transform-origin: top center;
+        position: absolute;
     }
-
+/*
     .back_icon {
         margin-right: 750px;
     }
@@ -223,4 +226,5 @@
     .select_filter {
         margin-right: 30px;
     }
+    */
 }
