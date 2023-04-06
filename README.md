@@ -102,7 +102,7 @@ Then the site will be available at [http://localhost:3000)](http://localhost:300
 
 
 ## 專案架構設計
-### Structure Preview
+### Structure Overview
 ```
 src
 ├── App.css
