@@ -1,5 +1,18 @@
 # Dcard Project Manager
 ## 啟動專案
++ Clone this repo to local environment.
+```bash
+git clone git@github.com:dcard-intern/dcard-intern.github.io.git
+```
+
++ Install necessary tools for the package and start the project.
+```bash
+npm install
+npm start
+```
+Then the site will be available at [http://localhost:3000)](http://localhost:3000).
+
+## 線上部署
 ### 網頁連結
 + [Website Deployment Link](https://dcard-intern.github.io/)
 
@@ -89,6 +102,37 @@
 
 
 ## 專案架構設計
+### Structure Preview
+```
+src
+├── App.css
+├── App.js
+├── App.test.js
+├── component
+│   ├── Home
+│   │   ├── Home.jsx                  # Homepage
+│   │   └── Home.module.css           # Style of Home
+│   ├── IssueTable
+│   │   ├── IssueTable.jsx            # Display the table for editing or creating new issues
+│   │   └── IssueTable.module.css     # Style of IssueTable
+│   ├── List
+│   │   ├── ListElement.jsx           # Show each issue
+│   │   └── ListElement.module.css    # Style of ListElement
+│   ├── Login
+│   │   ├── Login.jsx                 # Login page
+│   │   └── Login.module.css          # Style of Login
+│   └── SetRepo
+│       ├── SetRepo.jsx               # Page for setting which repo to operate
+│       └── SetRepo.module.css        # Style of SetRepo
+├── image
+│   └── login.jpg                     # The background image of Login
+├── index.css
+├── index.js
+├── logo.svg
+├── reportWebVitals.js
+└── setupTests.js
+```
+
 ### React.js Component
 + 本專案將每一個頁面或是重複使用的元件包裝成component，包含登入頁面`Login`、設定GitHub repo頁面`SetRepo`、主頁`Home`、每一個task`ListElement`以及新增或編輯task的`IssueTable`。
 + `Login`、`SetRepo`、`Home`這三個渲染頁面的component皆由`App.js`統一管理，而`Home`會將每一個要顯示的task交給`ListElement`渲染，另外`Home`和`ListElement`都會將新增或編輯task的任務交給`IssueTable`負責渲染彈出視窗，並將輸入完畢的task交給`Home`新增或編輯GitHub上的task。
