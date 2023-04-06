@@ -28,7 +28,7 @@
 .issue_label_o {
     background-color: rgb(223, 223, 223);
     height: 50px;
-    width: 120px;
+    width: 150px;
     border: 0;
     border-radius: 7px;
     cursor: pointer;
@@ -51,7 +51,7 @@
     background-color: rgb(245, 215, 215);
     color: red !important;
     composes: issue_label_o;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .issue_label_i:hover {
@@ -208,14 +208,14 @@
 }
 
 .edit_label_list {
-    width: 118px;
+    width: 150px;
     margin-left: 103px !important;
     margin-top: 90px !important;
     composes: label_list from "../IssueTable/IssueTable.module.css";
 }
 
 .edit_label_list_open {
-    width: 118px;
+    width: 150px;
     composes: label_list_open from "../IssueTable/IssueTable.module.css";
 }
 
@@ -228,7 +228,6 @@
     color: red !important;
     background-color: rgb(252, 210, 210) !important;
     border-radius: 0px;
-    font-size: 16px !important;
     composes: edit_label_list_open;
 }
 

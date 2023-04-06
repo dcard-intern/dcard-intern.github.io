@@ -1,11 +1,11 @@
 .label_list {
     display: flex;
     flex-direction: column;
-    width: 120px;
+    width: 150px;
     height: 150px;
     position: absolute;
-    margin-left: 130px;
-    margin-top: 70px;
+    margin-left: 0px;
+    margin-top: 130px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -16,9 +16,9 @@
 
 .label_list_open {
     border: 0px;
-    width: 120px;
+    width: 150px;
     height: 50px;
-    font-size: 18px;
+    font-size: 20px;
     border-width: 2px;
     background-color: rgb(223, 223, 223);
     color: black;
@@ -34,7 +34,7 @@
     composes: label_list_open;
     color: red !important;
     background-color: rgb(245, 215, 215);
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .label_list_in_progress:hover {
@@ -77,7 +77,7 @@
 .new_issue_label_o {
     background-color: rgb(223, 223, 223);
     height: 50px;
-    width: 120px;
+    width: 150px;
     border: 0;
     border-radius: 7px;
     cursor: pointer;
@@ -99,7 +99,7 @@
 .new_issue_label_i {
     composes: new_issue_label_o;
     background-color: rgb(245, 215, 215);
-    font-size: 16px;
+    font-size: 20px;
     color: red !important;
 }
 
